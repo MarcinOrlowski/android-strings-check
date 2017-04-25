@@ -18,10 +18,11 @@ class Convert {
 		$occurance = array();
 
 		foreach($n->childNodes as $nc) {
-			if (isset($occurance[$nc->nodeName]))
+			if (isset($occurance[$nc->nodeName])) {
 				$occurance[$nc->nodeName]++;
-			else
+			} else {
 				$occurance[$nc->nodeName] = 1;
+			}
 		}
 
 		foreach($n->childNodes as $nc) {
@@ -78,7 +79,6 @@ class Convert {
 		}
 
 		return $result;
-
 	}
 
 // class convert
@@ -86,69 +86,72 @@ class Convert {
 
 
 	if( $_SERVER['argc'] != 3 ) {
-		printf("Usage: %s strings-EN.xml string-LANG.xml\n", $_SERVER['argv'][0] );
+		printf("Usage: %s strings-BASE.xml string-LANG.xml\n", $_SERVER['argv'][0] );
 		die( "*** Aborted\n");
 	}
 
-	$fileEn = $_SERVER['argv'][1];
+	$fileBase = $_SERVER['argv'][1];
 	$fileLang = $_SERVER['argv'][2];
 
-	if( file_exists( $fileEn ) == FALSE ) {
-		die( sprintf("*** Missing file '%s'\n", $fileEn ));
+	if( file_exists( $fileBase ) == FALSE ) {
+		die( sprintf("*** Missing BASE file '%s'\n", $fileBase ));
 	}
 
 	if( file_exists( $fileLang ) == FALSE ) {
-		die( sprintf("*** Missing file '%s'\n", $fileLang ) );
+		die( sprintf("*** Missing LANG file '%s'\n", $fileLang ) );
 	}
 
 
 	$convert = new Convert();
 	$dataLang = $convert->GetLabels( $fileLang );
-	$dataEn = $convert->GetLabels( $fileEn );
+	$dataBase = $convert->GetLabels( $fileBase );
 
-	$cntLang = $cntEn = 0;
+	$cntLang = $cntBase = 0;
 
 	echo "\n";
 
 	// comparing
-	printf("Missing in <LANG> (You need to add these to your file)\n");
+	printf("Missing in <LANG> (You need to translate these)\n");
     printf("File: %s\n", $fileLang);
-	printf("------------------------------------------------------\n");
-	foreach( $dataEn AS $string ) {
-		if( isset( $dataLang[$string] ) == false ) {
+	printf("-----------------------------------------------\n");
+	foreach( $dataBase as $string ) {
+		if( !array_key_exists($string, $dataLang)) {
 			printf("%s\n", $string);
 			$cntLang++;
 		}
 	}
 
-	echo "\n";
-	printf("Missing in EN (you probably shall remove it from your <LANG> file)\n");
+	echo "\n\n";
+	printf("Not present in BASE (you need to remove it from LANG)\n");
 	printf("File: %s\n", $fileEn);
-	printf("------------------------------------------------------------------\n");
-	foreach( $dataLang AS $string ) {
-		if( isset( $dataEn[$string] ) == false ) {
+	printf("-----------------------------------------------------\n");
+	foreach( $dataLang as $string ) {
+		if( !array_key_exists($string, $dataBase)) {
 			printf("%s\n", $string);
-			$cntEn++;
+			$cntBase++;
 		}
 	}
 
 	echo "\n\nSummary\n----------------\n";
 
-	printf("BASE file: '%s'\n", $fileEn);
-	printf("LANG file: '%s'\n", $fileLang);
-
+	echo "BASE file: '{$fileBase}'\n";
+	echo "LANG file: '{$fileLang}'\n";
 	echo "\n";
 
+	$rc = 1;
 	if( ($cntLang == 0) && ($cntEn==0) ) {
 		echo "OK. Files seem to be up to date.\n";
+		$rc = 0;
 	} else {
 		if( $cntLang > 0 ) {
-			printf( "%4d missing strings in your LANG file.\n", $cntLang );
+			printf( "%4d missing strings in LANG file.\n", $cntLang );
 		}
 
-		if( $cntEn > 0 ) {
-			printf("%4d obsolete strings in your LANG file.\n", $cntEn );
+		if( $cntBase > 0 ) {
+			printf("%4d orphaned strings in LANG file.\n", $cntBase );
 		}
 	}
 
 	echo "\n";
+
+	exit($rc);
