@@ -1,5 +1,6 @@
 Preface
-#######
+=======
+
 While working on some Android projects I faced small issue related to localisation files - lack of localisation files diff.
 Since there’s no built-in mechanism that helps you keep all these files in sync, figure out which translation lacks
 which strings I crafted small PHP command line script to help me keep my translations up to date with english base 
@@ -7,7 +8,8 @@ strings. Since this seems to be common problem for other translators as well, I 
 free to use it as you want. I do not mind if you credit me anyway :)
 
 Usage
-#####
+=====
+
 Script takes two strings.xml-type-o-files and cross-checks them to find if there’s any missing 
 (present in base file but not in translated) or obsolete (present in translation file but no longer in base)
 strings. Both files are passed as arguments while calling the script – first strings.xml is a **BASE** 
@@ -36,10 +38,8 @@ It will give you the output like this:
        1 obsolete strings in your LANG file.
 
 Notes
-#####
-I use Debian so PHP here is in `/usr/bin/php`. On your distro it may be `/usr/local/bin/php` or elsewhere (do `which php` to find out).
-Either update 1st line in the script or just type `php` while calling it:
+=====
+
+I use Debian so PHP interpreter for me resides in `/usr/bin/php`. On your distro it may be `/usr/local/bin/php` or elsewhere (do `which php` to find out). Either update 1st line in the script or just type `php` while invoking:
 
     php ./strings-check.php values/strings.xml values-pl/strings.xml
-
-The script is written in PHP and I use it from command line (however it will work if you use it with webbrowser, however it needs some tweaks to get args then.
