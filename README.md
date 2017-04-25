@@ -1,6 +1,6 @@
 What it is?
 ===========
-It's developer tool that serves as Simple Android localization resource files (`values/strins.xml`) cross checker.
+It's developer tool that serves as Simple Android localization resource files (`values/strings.xml`) cross checker.
 
 While working on some Android projects back in 2010 I started to face problems keeping all translations in sync.
 The more languages were added to the project the bigger chanllenge it become to ensure no language stays behind.
