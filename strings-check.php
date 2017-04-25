@@ -36,30 +36,27 @@ class Convert {
 
 					$counter = count($xml_array[$nc->nodeName])-1;
 
-					$atrybuty = $nc->attributes;
-					for ($k = 0; $k < $atrybuty->length; $k++) {
-						$xml_array[$nc->nodeName][$counter]['attribute'][$atrybuty->item($k)->nodeName] = $atrybuty->item($k)->nodeValue;
+					$attrs = $nc->attributes;
+					for ($k = 0; $k < $attrs->length; $k++) {
+						$xml_array[$nc->nodeName][$counter]['attribute'][$attrs->item($k)->nodeName] = $attrs->item($k)->nodeValue;
 					}
 					//$counter++;
 				} else {
 					$xml_array[$nc->nodeName][]['cdata'] = $nc->nodeValue;
 					$counter = count($xml_array[$nc->nodeName])-1;
-					$atrybuty = $nc->attributes;
-					for ($k = 0; $k < $atrybuty->length; $k++) {
-						$xml_array[$nc->nodeName][$counter]['attribute'][$atrybuty->item($k)->nodeName] = $atrybuty->item($k)->nodeValue;
+					$attrs = $nc->attributes;
+					for ($k = 0; $k < $attrs->length; $k++) {
+						$xml_array[$nc->nodeName][$counter]['attribute'][$attrs->item($k)->nodeName] = $attrs->item($k)->nodeValue;
 					}
 				}
-			} els {
-			{
+			} else {
 				if( $nc->hasAttributes() ) {
-					$atrybuty = $nc->attributes;
-					$counter = 0;
-					for ($k = 0; $k < $atrybuty->length; $k++) {
-						$xml_array[$nc->nodeName][$counter]['attribute'][$atrybuty->item($k)->nodeName]= $atrybuty->item($k)->nodeValue;
+					$attrs = $nc->attributes;
+					for ($k = 0; $k < $attrs->length; $k++) {
+						$xml_array[$nc->nodeName][0]['attribute'][$attrs->item($k)->nodeName]= $attrs->item($k)->nodeValue;
 					}
 				}
 			}
-
 		 }
 
 		 return $xml_array;
@@ -112,8 +109,8 @@ class Convert {
 	echo "\n";
 
 	// comparing
-	printf("Missing in <LANG> (You need to translate these)\n");
-    printf("File: %s\n", $fileLang);
+	printf("Missing in LANG (You need to translate these)\n");
+    	printf("File: %s\n", $fileLang);
 	printf("-----------------------------------------------\n");
 	foreach( $dataBase as $string ) {
 		if( !array_key_exists($string, $dataLang)) {
@@ -145,11 +142,11 @@ class Convert {
 		$rc = 0;
 	} else {
 		if( $cntLang > 0 ) {
-			printf( "%4d missing strings in LANG file.\n", $cntLang );
+			printf( "%4d missing strings.\n", $cntLang );
 		}
 
 		if( $cntBase > 0 ) {
-			printf("%4d orphaned strings in LANG file.\n", $cntBase );
+			printf("%4d orphaned strings.\n", $cntBase );
 		}
 	}
 
