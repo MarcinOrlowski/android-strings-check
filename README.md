@@ -37,6 +37,11 @@ It will give you the output like this:
        3 missing strings in your LANG file.
        1 obsolete strings in your LANG file.
 
+If you need to deal with more translations, then you need to compare them one by one, yet this shall bash loop should do the trick
+(assuming you got all translations in single `strings.xml` file in each `values-*` folder):
+
+    for i in values-*/strings.xml ; do ./strings-check.php values/strings.xml ${i} ; done
+
 Notes
 =====
 
