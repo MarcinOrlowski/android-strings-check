@@ -43,3 +43,9 @@ Notes
 I use Debian so PHP interpreter for me resides in `/usr/bin/php`. On your distro it may be `/usr/local/bin/php` or elsewhere (do `which php` to find out). Either update 1st line in the script or just type `php` while invoking:
 
     php ./strings-check.php values/strings.xml values-pl/strings.xml
+
+Requirements
+============
+
+ - PHP 5 (PHP 4 should work as well though)
+ - DOM extension (should be enabled by default these days)
