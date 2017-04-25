@@ -8,7 +8,8 @@
 //
 // Written by Marcin Orlowski <mail (@) marcinorlowski (.) com>
 //
-// 2010.07.03: Initial release
+// 2010-07-03: Initial release
+// 2017-04-25: Code cleanup; Added exit code
 
 class Convert {
 
