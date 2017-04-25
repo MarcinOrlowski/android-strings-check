@@ -21,19 +21,21 @@ strings. Both files are passed as arguments while calling the script – first s
 It will give you the output like this:
     
     Missing in <LANG> (You need to add these to your file)
-    File: values-de/strings.xml
+    File: values-pl/strings.xml
     ------------------------------------------------------
     show_full_header_action
     hide_full_header_action
     recreating_account
+    
     Missing in EN (you probably shall remove it from your <LANG> file)
     File: values/strings.xml
     ------------------------------------------------------------------
     provider_note_yahoo
+    
     Summary
     ----------------
     BASE file: 'values/strings.xml'
-    LANG file: 'values-de/strings.xml'
+    LANG file: 'values-pl/strings.xml'
        3 missing strings in your LANG file.
        1 obsolete strings in your LANG file.
 
