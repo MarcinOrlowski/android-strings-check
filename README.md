@@ -22,24 +22,24 @@ Lets'ch check how LANG `values-pl/strings.xml` matches BASE `values/strings.xml`
 
 The report will look like this:
     
-    Missing in <LANG> (You need to add these to your file)
+    Missing in LANG (You need to translate these)
     File: values-pl/strings.xml
-    ------------------------------------------------------
+    ---------------------------------------------
     show_full_header_action
     hide_full_header_action
     recreating_account
     
-    Missing in BASE (you probably shall remove it from your <LANG> file)
+    Not present in BASE (you need to remove it from LANG)
     File: values/strings.xml
-    ------------------------------------------------------------------
+    -----------------------------------------------------
     provider_note_yahoo
     
     Summary
     ----------------
     BASE file: 'values/strings.xml'
     LANG file: 'values-pl/strings.xml'
-       3 missing strings in your LANG file.
-       1 obsolete strings in your LANG file.
+       3 missing strings.
+       1 orphaned strings.
 
 If you need to deal with more translations, then you need to compare them one by one, yet this shall bash loop should do the trick
 (assuming you got all translations in single `strings.xml` file in each `values-*` folder):
