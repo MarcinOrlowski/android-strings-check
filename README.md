@@ -63,7 +63,7 @@ Project support
  done or simply saved you time and money  then then feel free to donate to the project by sending some
  spare BTC to `1LbfbmZ1KfSNNTGAEHtP63h7FPDEPTa3Yo`.
 
- ![BTC](img/btc.png)
+ ![BTC](btc.png)
 
 
 Contributing
