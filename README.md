@@ -1,24 +1,26 @@
-Preface
-=======
+What it is?
+===========
+It's developer tool that serves as Simple Android localization resource files (`values/strins.xml`) cross checker.
 
-While working on some Android projects I faced small issue related to localisation files - lack of localisation files diff.
-Since there’s no built-in mechanism that helps you keep all these files in sync, figure out which translation lacks
-which strings I crafted small PHP command line script to help me keep my translations up to date with english base 
-strings. Since this seems to be common problem for other translators as well, I decided to share my script. Feel 
-free to use it as you want. I do not mind if you credit me anyway :)
+While working on some Android projects back in 2010 I started to face problems keeping all translations in sync.
+The more languages were added to the project the bigger chanllenge it become to ensure no language stays behind.
+
+Since there were no built-in mechanism to helps me check out which translation lacks what strings, I crafted 
+this small PHP script to help me with the task.
 
 Usage
 =====
 
-Script takes two strings.xml-type-o-files and cross-checks them to find if there’s any missing 
-(present in base file but not in translated) or obsolete (present in translation file but no longer in base)
-strings. Both files are passed as arguments while calling the script – first strings.xml is a **BASE** 
-(it shall be that one you try to sync to, so in general case `values/strings.xml`) the other one is your **LANG**
-(translated) file. In my case `values-pl/strings.xml`. To check these files do the following in the terminal:
+Script takes two strings resource files and cross-checks them. First file is considered BASE (reference)
+one, second is expected to be translation (LANG) of reference file. Once crosscheck is made report is 
+gerating listing all the keys of strings present in BASE but missing in LANG file but alos listing orphaned
+keys - present in LANG but not found in BASE.
+
+Lets'ch check how LANG `values-pl/strings.xml` matches BASE `values/strings.xml` file:
 
     ./strings-check.php values/strings.xml values-pl/strings.xml
 
-It will give you the output like this:
+The report will look like this:
     
     Missing in <LANG> (You need to add these to your file)
     File: values-pl/strings.xml
@@ -27,7 +29,7 @@ It will give you the output like this:
     hide_full_header_action
     recreating_account
     
-    Missing in EN (you probably shall remove it from your <LANG> file)
+    Missing in BASE (you probably shall remove it from your <LANG> file)
     File: values/strings.xml
     ------------------------------------------------------------------
     provider_note_yahoo
